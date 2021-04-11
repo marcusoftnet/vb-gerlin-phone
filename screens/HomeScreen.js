@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import SearchBar from 'react-native-elements/dist/searchbar/SearchBar-ios';
+import { SafeAreaView, StyleSheet } from 'react-native';
+import { Text } from 'react-native-elements';
 import HeaderLeftComponent from '../components/HeaderLeftComponent';
 import HeaderRightComponent from '../components/HeaderRightComponent';
 import { auth } from '../firebase';
@@ -19,19 +19,18 @@ const HomeScreen = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Gerlin - Vasa Band Music library',
-      headerStyle: { backgroundColor: '#fff' },
-      headerTitleStyle: { color: 'black' },
-      headerTintColor: 'black',
+      title: 'Gerlin - Search',
+      headerStyle: { backgroundColor: '#1a3b5f' },
+      headerTitleStyle: { color: 'white' },
+      headerTintColor: 'white',
       headerLeft: () => <HeaderLeftComponent onSignOut={signOutUser} />,
-      headerRight: () => <HeaderRightComponent onAddChat={addChat} />,
+      headerRight: () => <HeaderRightComponent />,
     });
   }, [navigation]);
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchBar style={styles.searchbar} />
-      <ScrollView style={styles.searchResult}></ScrollView>
+      <Text>Home!</Text>
     </SafeAreaView>
   );
 };

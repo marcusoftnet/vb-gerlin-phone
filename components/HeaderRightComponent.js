@@ -1,15 +1,12 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { AntDesign, SimpleLineIcons } from '@expo/vector-icons';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
-const HeaderRightComponent = ({ onAddChat }) => {
+const HeaderRightComponent = ({ onAddMaterial }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity activeOpacity={0.5}>
-        <AntDesign name='camerao' size={24} color='black' />
-      </TouchableOpacity>
-      <TouchableOpacity activeOpacity={0.5} onPress={onAddChat}>
-        <SimpleLineIcons name='pencil' size={24} color='black' />
+      <TouchableOpacity activeOpacity={0.5} onPress={onAddMaterial}>
+        <MaterialIcons name='post-add' size={24} color='white' />
       </TouchableOpacity>
     </View>
   );
@@ -20,8 +17,7 @@ export default HeaderRightComponent;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: 80,
+    width: 20,
     marginRight: 20,
   },
 });

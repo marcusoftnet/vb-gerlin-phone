@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
-import { Button, Image, Input } from 'react-native-elements';
+import { Button, Image, Input, Text } from 'react-native-elements';
 import logo from '../assets/logo_vasaband.png';
 import { auth } from '../firebase';
 
@@ -27,6 +27,9 @@ const LoginScreen = ({ navigation }) => {
     <KeyboardAvoidingView behavior='padding' style={styles.container}>
       <StatusBar style='light' />
       <Image source={logo} style={styles.imageStyles} />
+      <Text h3 style={styles.headingStyle}>
+        Gerlin music library
+      </Text>
       <View style={styles.inputContainer}>
         <Input
           placeholder='Email'
@@ -72,9 +75,13 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: 300,
+    paddingTop: 25,
   },
   imageStyles: {
-    width: 200,
-    height: 200,
+    width: 250,
+    height: 89,
+  },
+  headingStyle: {
+    paddingTop: 15,
   },
 });
