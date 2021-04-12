@@ -4,7 +4,6 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
-import RegisterScreen from './screens/RegisterScreen';
 
 const Stack = createStackNavigator();
 
@@ -28,10 +27,11 @@ const vasaBandTheme = {
 
 export default function App() {
   return (
-    <NavigationContainer theme={vasaBandTheme}>
+    // <NavigationContainer theme={vasaBandTheme}>
+    <NavigationContainer>
       <Stack.Navigator screenOptions={globalScreenOptions}>
         <Stack.Screen name='Login' component={LoginScreen} />
-        <Stack.Screen name='Register' component={RegisterScreen} />
+        {/* <Stack.Screen name='Register' component={RegisterScreen} /> */}
         <Stack.Screen name='Home' component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>

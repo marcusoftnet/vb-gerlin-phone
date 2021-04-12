@@ -1,12 +1,15 @@
+import { useTheme } from '@react-navigation/native';
 import React, { useLayoutEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { Text } from 'react-native-elements';
+import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import { Input } from 'react-native-elements';
 import HeaderLeftComponent from '../components/HeaderLeftComponent';
 import HeaderRightComponent from '../components/HeaderRightComponent';
 import { auth } from '../firebase';
 
 const HomeScreen = ({ navigation }) => {
   const [materials, setMaterials] = useState([]);
+  const [search, setSearch] = useState('');
+  const { colors } = useTheme();
 
   const signOutUser = () => {
     auth
@@ -28,9 +31,17 @@ const HomeScreen = ({ navigation }) => {
     });
   }, [navigation]);
 
+  const updateSearch = () => {};
+
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Home!</Text>
+      {/* <SearchBar
+        placeholder='Type Here...'
+        onChangeText={updateSearch}
+        value={search}
+      /> */}
+      <Input type='text' />
+      <Text>Apa</Text>
     </SafeAreaView>
   );
 };
