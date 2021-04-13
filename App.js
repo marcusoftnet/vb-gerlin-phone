@@ -13,25 +13,11 @@ const globalScreenOptions = {
   headerTintColor: 'white',
 };
 
-const vasaBandTheme = {
-  dark: false,
-  colors: {
-    primary: '#1a3b5f',
-    background: 'white',
-    card: '#1a3b5f',
-    text: 'white',
-    border: 'white',
-    notification: '#1a3b5f',
-  },
-};
-
 export default function App() {
   return (
-    // <NavigationContainer theme={vasaBandTheme}>
     <NavigationContainer>
       <Stack.Navigator screenOptions={globalScreenOptions}>
         <Stack.Screen name='Login' component={LoginScreen} />
-        {/* <Stack.Screen name='Register' component={RegisterScreen} /> */}
         <Stack.Screen name='Home' component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>

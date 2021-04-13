@@ -1,15 +1,15 @@
-import { useTheme } from '@react-navigation/native';
 import React, { useLayoutEffect, useState } from 'react';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { Input } from 'react-native-elements';
 import HeaderLeftComponent from '../components/HeaderLeftComponent';
 import HeaderRightComponent from '../components/HeaderRightComponent';
+import SearchResultItem from '../components/SearchResultItem';
 import { auth } from '../firebase';
+import { searchMusic } from '../lib/queries';
 
 const HomeScreen = ({ navigation }) => {
-  const [materials, setMaterials] = useState([]);
-  const [search, setSearch] = useState('');
-  const { colors } = useTheme();
+  const [searchResult, setSearchResult] = useState(null);
+  const [searchString, setSearchString] = useState('');
 
   const signOutUser = () => {
     auth
@@ -27,21 +27,43 @@ const HomeScreen = ({ navigation }) => {
       headerTitleStyle: { color: 'white' },
       headerTintColor: 'white',
       headerLeft: () => <HeaderLeftComponent onSignOut={signOutUser} />,
-      headerRight: () => <HeaderRightComponent />,
+      headerRight: () => <HeaderRightComponent onSignOut={signOutUser} />,
     });
   }, [navigation]);
 
-  const updateSearch = () => {};
+  const updateSearchResult = async () => {
+    try {
+      const result = await searchMusic(searchString);
+      console.log(result.docs.length);
+      setSearchResult(result);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const showMaterial = () => {};
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <SearchBar
-        placeholder='Type Here...'
-        onChangeText={updateSearch}
-        value={search}
-      /> */}
-      <Input type='text' />
-      <Text>Apa</Text>
+      <Input
+        style={styles.searchbar}
+        placeholder='Search music'
+        type='text'
+        value={searchString}
+        onChangeText={setSearchString}
+        onSubmitEditing={updateSearchResult}
+        autoFocus={true}
+      />
+      <ScrollView style={styles.listContainer}>
+        {searchResult?.docs.map((material) => (
+          <SearchResultItem
+            key={material.id}
+            id={material.id}
+            material={material.data()}
+            searchString={searchString}
+          />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -52,6 +74,8 @@ const styles = StyleSheet.create({
   container: {
     height: '100%',
   },
-  searchbar: {},
-  searchResult: {},
+  searchbar: {
+    position: 'relative',
+  },
+  listContainer: {},
 });
