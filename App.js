@@ -5,6 +5,7 @@ import { StyleSheet } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
+import MaterialScreen from './screens/MaterialScreen';
 
 const theme = {
   colors: {
@@ -28,6 +29,7 @@ export default function App() {
         <Stack.Navigator screenOptions={globalScreenOptions}>
           <Stack.Screen name='Login' component={LoginScreen} />
           <Stack.Screen name='Home' component={HomeScreen} />
+          <Stack.Screen name='Material' component={MaterialScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
