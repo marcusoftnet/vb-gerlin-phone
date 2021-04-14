@@ -14,7 +14,6 @@ const HeaderLeftComponent = ({ onSignOut }) => {
           onPress={onSignOut}
           activeOpacity={0.7}
           containerStyle={{ flex: 2 }}
-          overlayContainerStyle={{ backgroundColor: '#1a3b5f' }}
         />
       </TouchableOpacity>
     </View>

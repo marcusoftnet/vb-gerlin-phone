@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import { Input } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 import HeaderLeftComponent from '../components/HeaderLeftComponent';
 import HeaderRightComponent from '../components/HeaderRightComponent';
 import SearchResultItem from '../components/SearchResultItem';
@@ -23,7 +23,6 @@ const HomeScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: 'Gerlin - Search',
-      headerStyle: { backgroundColor: '#1a3b5f' },
       headerTitleStyle: { color: 'white' },
       headerTintColor: 'white',
       headerLeft: () => <HeaderLeftComponent onSignOut={signOutUser} />,
@@ -40,8 +39,8 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
-  const showMaterial = (id) => {
-    alert('showing ' + id);
+  const showMaterial = (id, materialName) => {
+    navigation.navigate('Material', { id, materialName });
   };
 
   return (
@@ -55,6 +54,12 @@ const HomeScreen = ({ navigation }) => {
         onSubmitEditing={updateSearchResult}
         autoFocus={true}
       />
+      <Button
+        containerStyle={styles.button}
+        title='Search'
+        onPress={updateSearchResult}
+      />
+
       <ScrollView style={styles.listContainer}>
         {searchResult?.docs.map((material) => (
           <SearchResultItem
@@ -79,4 +84,8 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   listContainer: {},
+  button: {
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
 });

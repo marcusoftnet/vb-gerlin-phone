@@ -5,7 +5,11 @@ import MaterialAvatar from './MaterialAvatar';
 
 const SearchResultItem = ({ id, material, showMaterial }) => {
   return (
-    <ListItem onPress={() => showMaterial(id)} key={id} buttonDivider>
+    <ListItem
+      onPress={() => showMaterial(id, material.title)}
+      key={id}
+      buttonDivider
+    >
       <MaterialAvatar material={material} />
       <ListItem.Content>
         <ListItem.Title style={{ fontWeight: '800' }}>
