@@ -4,6 +4,7 @@
     "slug": "vb-gerlin-phone",
     "version": "1.0.0",
     "orientation": "portrait",
+    "description": "Vasa Band Music Library, in your phone",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
