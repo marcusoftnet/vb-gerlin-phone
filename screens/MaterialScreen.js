@@ -1,12 +1,14 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-const MaterialScreen = ({ navigation, id }) => {
+const MaterialScreen = ({ navigation, route }) => {
   const [material, setMaterial] = useState({});
+  console.log(route);
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'apa',
+      title: route.params.materialName,
+      headerBackTitle: 'Back',
       headerTitleStyle: { color: 'white' },
       headerTintColor: 'white',
     });
@@ -14,7 +16,7 @@ const MaterialScreen = ({ navigation, id }) => {
 
   return (
     <View>
-      <Text></Text>
+      <Text>{route.params.materialName}</Text>
     </View>
   );
 };
