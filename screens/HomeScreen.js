@@ -34,14 +34,15 @@ const HomeScreen = ({ navigation }) => {
   const updateSearchResult = async () => {
     try {
       const result = await searchMusic(searchString);
-      console.log(result.docs.length);
       setSearchResult(result);
     } catch (error) {
       alert(error.message);
     }
   };
 
-  const showMaterial = () => {};
+  const showMaterial = (id) => {
+    alert('showing ' + id);
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -60,7 +61,7 @@ const HomeScreen = ({ navigation }) => {
             key={material.id}
             id={material.id}
             material={material.data()}
-            searchString={searchString}
+            showMaterial={showMaterial}
           />
         ))}
       </ScrollView>
