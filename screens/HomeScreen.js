@@ -22,7 +22,7 @@ const HomeScreen = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Gerlin - Search',
+      title: 'Jehrin - Search',
       headerTitleStyle: { color: 'white' },
       headerTintColor: 'white',
       headerLeft: () => <HeaderLeftComponent onSignOut={signOutUser} />,
