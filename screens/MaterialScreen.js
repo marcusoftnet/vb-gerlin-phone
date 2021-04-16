@@ -15,11 +15,6 @@ const MaterialScreen = ({ navigation, route }) => {
   const updateInputValue = (prop, value) => {
     setMaterial((prev) => ({ ...prev, [prop]: value }));
   };
-  const setSeriesNumber = (text) => updateInputValue('seriesNumber', text);
-  const setTitle = (text) => updateInputValue('title', text);
-  const setComposer = (text) => updateInputValue('composer', text);
-  const setType = (text) => updateInputValue('type', text);
-  const setComments = (text) => updateInputValue('comments', text);
 
   const saveMaterial = async () => {
     const user = await getUserData(auth.currentUser.uid);
@@ -66,26 +61,26 @@ const MaterialScreen = ({ navigation, route }) => {
             label='Series number'
             type='text'
             value={material.seriesNumber}
-            onChangeText={(text) => setSeriesNumber(text)}
+            onChangeText={(text) => updateInputValue('seriesNumber', text)}
           />
           <Input
             label='Title'
             autoFocus
             type='text'
             value={material.title}
-            onChangeText={(text) => setTitle(text)}
+            onChangeText={(text) => updateInputValue('title', text)}
           />
           <Input
             label='Composer'
             type='text'
             value={material.composer}
-            onChangeText={(text) => setComposer(text)}
+            onChangeText={(text) => updateInputValue('composer', text)}
           />
           <Input
             label='Type'
             type='text'
             value={material.type}
-            onChangeText={(text) => setType(text)}
+            onChangeText={(text) => updateInputValue('type', text)}
           />
           <Input
             label='Type'
@@ -93,7 +88,7 @@ const MaterialScreen = ({ navigation, route }) => {
             numberOfLines={4}
             type='text'
             value={material.comments}
-            onChangeText={(text) => setComments(text)}
+            onChangeText={(text) => updateInputValue('comments', text)}
           />
           <Button
             containerStyle={styles.button}
