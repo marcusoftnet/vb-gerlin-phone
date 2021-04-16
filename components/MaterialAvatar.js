@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Avatar } from 'react-native-elements';
+import { Avatar, Text, Tooltip } from 'react-native-elements';
 
 const MaterialAvatar = ({ material }) => {
   const getTypeLetter = (type) => {
@@ -22,13 +22,15 @@ const MaterialAvatar = ({ material }) => {
     return type[0];
   };
   return (
-    <Avatar
-      overlayContainerStyle={{ backgroundColor: '#1a3b5f' }}
-      size='medium'
-      title={getTypeLetter(material.type)}
-      titleStyle={{ fontSize: '14px' }}
-      icon={{ name: 'music', type: 'font-awesome' }}
-    />
+    <Tooltip popover={<Text>{material.type}</Text>}>
+      <Avatar
+        overlayContainerStyle={{ backgroundColor: '#1a3b5f' }}
+        size='medium'
+        title={getTypeLetter(material.type)}
+        titleStyle={{ fontSize: '14px' }}
+        icon={{ name: 'music', type: 'font-awesome' }}
+      />
+    </Tooltip>
   );
 };
 

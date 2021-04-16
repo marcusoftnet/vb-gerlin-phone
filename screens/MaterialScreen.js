@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { Button, Input, Text } from 'react-native-elements';
 import { showMessage } from 'react-native-flash-message';
+import MaterialAvatar from '../components/MaterialAvatar';
 import { auth } from '../firebase';
 import {
   getMaterialById,
@@ -54,9 +55,12 @@ const MaterialScreen = ({ navigation, route }) => {
         </View>
       ) : (
         <View style={styles.inputContainer}>
-          <Text style={styles.materialHeader}>
-            {material.seriesNumber} - {material.title}
-          </Text>
+          <View style={styles.headerContainer}>
+            <MaterialAvatar material={material} />
+            <Text style={styles.materialHeader}>
+              {material.seriesNumber} - {material.title}
+            </Text>
+          </View>
           <Input
             label='Series number'
             type='text'
@@ -119,7 +123,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   materialHeader: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     paddingTop: 20,
     paddingBottom: 20,
@@ -127,5 +131,10 @@ const styles = StyleSheet.create({
   button: {
     width: '100%',
     marginTop: 10,
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });
