@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { Button, Input, Text } from 'react-native-elements';
+import { showMessage } from 'react-native-flash-message';
 import { auth } from '../firebase';
 import {
   getMaterialById,
@@ -10,7 +11,6 @@ import {
 
 const MaterialScreen = ({ navigation, route }) => {
   const [material, setMaterial] = useState(null);
-  const [saved, setSaved] = useState(false);
 
   const updateInputValue = (prop, value) => {
     setMaterial((prev) => ({ ...prev, [prop]: value }));
@@ -24,8 +24,11 @@ const MaterialScreen = ({ navigation, route }) => {
   const saveMaterial = async () => {
     const user = await getUserData(auth.currentUser.uid);
     await updateMaterialData(material, user.data());
-    setSaved(true);
-    setTimeout(() => setSaved(false), 3000);
+
+    showMessage({
+      message: 'Material saved',
+      type: 'success',
+    });
   };
 
   useLayoutEffect(() => {

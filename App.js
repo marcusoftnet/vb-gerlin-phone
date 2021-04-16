@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
+import FlashMessage from 'react-native-flash-message';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import MaterialScreen from './screens/MaterialScreen';
@@ -32,6 +33,7 @@ export default function App() {
           <Stack.Screen name='Material' component={MaterialScreen} />
         </Stack.Navigator>
       </NavigationContainer>
+      <FlashMessage position='top' />
     </ThemeProvider>
   );
 }
