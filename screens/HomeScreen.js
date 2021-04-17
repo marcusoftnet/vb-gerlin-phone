@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { Button, Input } from 'react-native-elements';
+import { showMessage } from 'react-native-flash-message';
 import HeaderLeftComponent from '../components/HeaderLeftComponent';
 import HeaderRightComponent from '../components/HeaderRightComponent';
 import SearchResultItem from '../components/SearchResultItem';
@@ -17,7 +18,12 @@ const HomeScreen = ({ navigation }) => {
       .then(() => {
         navigation.replace('Login');
       })
-      .catch((err) => alert(err.message));
+      .catch((error) => {
+        showMessage({
+          message: error.message,
+          type: 'danger',
+        });
+      });
   };
 
   useLayoutEffect(() => {
@@ -40,7 +46,10 @@ const HomeScreen = ({ navigation }) => {
       const result = await searchMusic(searchString);
       setSearchResult(result);
     } catch (error) {
-      alert(error.message);
+      showMessage({
+        message: error.message,
+        type: 'danger',
+      });
     }
   };
 
@@ -56,7 +65,7 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <Input
         style={styles.searchbar}
-        placeholder='Search music'
+        placeholder='Search for music'
         type='text'
         value={searchString}
         onChangeText={setSearchString}

@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useLayoutEffect, useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import { Button, Input, Text } from 'react-native-elements';
+import { showMessage } from 'react-native-flash-message';
 import { auth } from '../firebase';
 
 const RegisterScreen = ({ navigation }) => {
@@ -24,8 +25,10 @@ const RegisterScreen = ({ navigation }) => {
           displayName: name,
         });
       })
-      .catch((err) => {
-        alert(error.message);
+      .catch((error) => {
+        showMessage({
+        message: error.message,
+        type: 'danger',
       });
   };
 

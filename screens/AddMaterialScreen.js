@@ -47,7 +47,7 @@ const AddMaterialScreen = ({ navigation }) => {
     } catch (error) {
       showMessage({
         message: error.message,
-        type: 'error',
+        type: 'danger',
       });
     }
   };

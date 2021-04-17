@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, StyleSheet, View } from 'react-native';
 import { Button, Image, Input, Text } from 'react-native-elements';
+import { showMessage } from 'react-native-flash-message';
 import logo from '../assets/logo_vasaband.png';
 import { auth } from '../firebase';
 
@@ -20,7 +21,12 @@ const LoginScreen = ({ navigation }) => {
   }, []);
 
   const signIn = () => {
-    auth.signInWithEmailAndPassword(email, password).catch((err) => alert(err));
+    auth.signInWithEmailAndPassword(email, password).catch((error) => {
+      showMessage({
+        message: error.message,
+        type: 'danger',
+      });
+    });
   };
 
   return (
