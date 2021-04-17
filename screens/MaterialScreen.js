@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import { Button, Input, Text } from 'react-native-elements';
 import { showMessage } from 'react-native-flash-message';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialAvatar from '../components/MaterialAvatar';
 import { auth } from '../firebase';
 import {
@@ -48,7 +49,7 @@ const MaterialScreen = ({ navigation, route }) => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {!material ? (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size='large' />
@@ -102,7 +103,7 @@ const MaterialScreen = ({ navigation, route }) => {
           />
         </View>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
