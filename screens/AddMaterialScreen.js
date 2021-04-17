@@ -6,11 +6,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialAvatar from '../components/MaterialAvatar';
 import MaterialForm from '../components/MaterialForm';
 import { auth } from '../firebase';
-import { addNewMaterial, getUserData } from '../lib/queries';
 import {
   getMaterialScreenStyles,
   getNavigationOptions,
-} from './MaterialScreenFunctions';
+} from '../lib/MaterialScreenFunctions';
+import { addNewMaterial, getUserData } from '../lib/queries';
 
 const AddMaterialScreen = ({ navigation }) => {
   const initialMaterial = {

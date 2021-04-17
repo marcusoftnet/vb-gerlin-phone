@@ -7,14 +7,14 @@ import MaterialAvatar from '../components/MaterialAvatar';
 import MaterialForm from '../components/MaterialForm';
 import { auth } from '../firebase';
 import {
+  getMaterialScreenStyles,
+  getNavigationOptions,
+} from '../lib/MaterialScreenFunctions';
+import {
   getMaterialById,
   getUserData,
   updateMaterialData,
 } from '../lib/queries';
-import {
-  getMaterialScreenStyles,
-  getNavigationOptions,
-} from './MaterialScreenFunctions';
 
 const MaterialScreen = ({ navigation, route }) => {
   const [material, setMaterial] = useState(null);
