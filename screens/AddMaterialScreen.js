@@ -1,11 +1,16 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
-import { Button, Input, Text } from 'react-native-elements';
+import { View } from 'react-native';
+import { Text } from 'react-native-elements';
 import { showMessage } from 'react-native-flash-message';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import MaterialAvatar from '../components/MaterialAvatar';
+import MaterialForm from '../components/MaterialForm';
 import { auth } from '../firebase';
 import { addNewMaterial, getUserData } from '../lib/queries';
+import {
+  getMaterialScreenStyles,
+  getNavigationOptions,
+} from './MaterialScreenFunctions';
 
 const AddMaterialScreen = ({ navigation }) => {
   const initialMaterial = {
@@ -22,12 +27,7 @@ const AddMaterialScreen = ({ navigation }) => {
   };
 
   useLayoutEffect(() => {
-    navigation.setOptions({
-      title: material?.title || '',
-      headerBackTitle: 'Search',
-      headerTitleStyle: { color: 'white' },
-      headerTintColor: 'white',
-    });
+    navigation.setOptions(getNavigationOptions(material?.title || ''));
   }, [navigation]);
 
   const addMaterial = async () => {
@@ -68,44 +68,10 @@ const AddMaterialScreen = ({ navigation }) => {
             {getMaterialHeader(material)}
           </Text>
         </View>
-        <Input
-          label='Series number'
-          autoFocus
-          type='text'
-          value={material.seriesNumber}
-          onChangeText={(text) => updateInputValue('seriesNumber', text)}
-        />
-        <Input
-          label='Title'
-          type='text'
-          value={material.title}
-          onChangeText={(text) => updateInputValue('title', text)}
-        />
-        <Input
-          label='Composer'
-          type='text'
-          value={material.composer}
-          onChangeText={(text) => updateInputValue('composer', text)}
-        />
-        <Input
-          label='Type'
-          type='text'
-          value={material.type}
-          onChangeText={(text) => updateInputValue('type', text)}
-        />
-        <Input
-          label='Comments'
-          multiline={true}
-          numberOfLines={4}
-          type='text'
-          value={material.comments}
-          onChangeText={(text) => updateInputValue('comments', text)}
-        />
-        <Button
-          containerStyle={styles.button}
-          title='Save'
-          raised
-          onPress={addMaterial}
+        <MaterialForm
+          material={material}
+          updateInputValue={updateInputValue}
+          onSubmit={addMaterial}
         />
       </View>
     </SafeAreaView>
@@ -114,35 +80,4 @@ const AddMaterialScreen = ({ navigation }) => {
 
 export default AddMaterialScreen;
 
-const styles = StyleSheet.create({
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  container: {
-    flex: 1,
-    height: '100%',
-  },
-  inputContainer: {
-    alignContent: 'center',
-    width: '90%',
-    paddingLeft: 20,
-  },
-  materialHeader: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  button: {
-    width: '100%',
-    marginTop: 10,
-  },
-  headerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-});
+const styles = getMaterialScreenStyles();
