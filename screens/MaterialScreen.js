@@ -30,8 +30,8 @@ const MaterialScreen = ({ navigation, route }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: material?.title || route.params.materialName,
-      headerBackTitle: 'Back',
+      title: material?.title || route.params.materialTitle,
+      headerBackTitle: 'Search',
       headerTitleStyle: { color: 'white' },
       headerTintColor: 'white',
     });
@@ -88,7 +88,7 @@ const MaterialScreen = ({ navigation, route }) => {
             onChangeText={(text) => updateInputValue('type', text)}
           />
           <Input
-            label='Type'
+            label='Comments'
             multiline={true}
             numberOfLines={4}
             type='text'
@@ -137,5 +137,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingLeft: 10,
+    paddingRight: 10,
   },
 });

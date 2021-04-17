@@ -27,7 +27,7 @@ const MaterialAvatar = ({ material }) => {
         overlayContainerStyle={{ backgroundColor: '#1a3b5f' }}
         size='medium'
         title={getTypeLetter(material.type)}
-        titleStyle={{ fontSize: '14px' }}
+        titleStyle={{ fontSize: 14 }}
         icon={{ name: 'music', type: 'font-awesome' }}
       />
     </Tooltip>

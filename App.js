@@ -4,6 +4,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { ThemeProvider } from 'react-native-elements';
 import FlashMessage from 'react-native-flash-message';
+import AddMaterialScreen from './screens/AddMaterialScreen';
 import HomeScreen from './screens/HomeScreen';
 import LoginScreen from './screens/LoginScreen';
 import MaterialScreen from './screens/MaterialScreen';
@@ -31,6 +32,7 @@ export default function App() {
           <Stack.Screen name='Login' component={LoginScreen} />
           <Stack.Screen name='Home' component={HomeScreen} />
           <Stack.Screen name='Material' component={MaterialScreen} />
+          <Stack.Screen name='AddMaterial' component={AddMaterialScreen} />
         </Stack.Navigator>
       </NavigationContainer>
       <FlashMessage position='top' />

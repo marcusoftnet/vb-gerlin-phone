@@ -22,11 +22,16 @@ const HomeScreen = ({ navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'Jehrin - Search',
+      title: 'Jehrin',
       headerTitleStyle: { color: 'white' },
       headerTintColor: 'white',
       headerLeft: () => <HeaderLeftComponent onSignOut={signOutUser} />,
-      headerRight: () => <HeaderRightComponent onSignOut={signOutUser} />,
+      headerRight: () => (
+        <HeaderRightComponent
+          onSignOut={signOutUser}
+          onNewMaterial={onNewMaterial}
+        />
+      ),
     });
   }, [navigation]);
 
@@ -39,8 +44,12 @@ const HomeScreen = ({ navigation }) => {
     }
   };
 
-  const showMaterial = (id, materialName) => {
-    navigation.navigate('Material', { id, materialName });
+  const showMaterial = (id, materialTitle) => {
+    navigation.navigate('Material', { id, materialTitle });
+  };
+
+  const onNewMaterial = () => {
+    navigation.navigate('AddMaterial');
   };
 
   return (
