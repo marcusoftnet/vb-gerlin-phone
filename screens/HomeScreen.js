@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import { showMessage } from 'react-native-flash-message';
 import HeaderLeftComponent from '../components/HeaderLeftComponent';
@@ -43,8 +43,10 @@ const HomeScreen = ({ navigation }) => {
 
   const updateSearchResult = async () => {
     try {
-      const result = await searchMusic(searchString);
-      setSearchResult(result);
+      if (searchString && searchString.length > 0) {
+        const result = await searchMusic(searchString);
+        setSearchResult(result);
+      }
     } catch (error) {
       showMessage({
         message: error.message,
@@ -61,6 +63,11 @@ const HomeScreen = ({ navigation }) => {
     navigation.navigate('AddMaterial');
   };
 
+  const clearSearch = () => {
+    setSearchResult(null);
+    setSearchString('');
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <Input
@@ -72,11 +79,20 @@ const HomeScreen = ({ navigation }) => {
         onSubmitEditing={updateSearchResult}
         autoFocus={true}
       />
-      <Button
-        containerStyle={styles.button}
-        title='Search'
-        onPress={updateSearchResult}
-      />
+      <View style={styles.buttonContainer}>
+        <Button
+          containerStyle={styles.button}
+          title='Search'
+          onPress={updateSearchResult}
+          disabled={searchString.length < 1}
+        />
+        <Button
+          containerStyle={styles.button}
+          title='Clear'
+          onPress={clearSearch}
+          disabled={!searchResult}
+        />
+      </View>
 
       <ScrollView style={styles.listContainer}>
         {searchResult?.docs.map((material) => (
@@ -101,9 +117,19 @@ const styles = StyleSheet.create({
   searchbar: {
     position: 'relative',
   },
-  listContainer: {},
+  listContainer: {
+    top: 40,
+    height: '80%',
+  },
   button: {
     paddingLeft: 20,
     paddingRight: 20,
+    width: '50%',
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 50,
   },
 });
